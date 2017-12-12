@@ -1,0 +1,35 @@
+<thead>
+    <tr role="row" class="heading">
+
+        {%  for column in grid.columnCollection %}
+            {% if loop.first and grid.hasMassAction() %}
+                <th class="no-sort text-center"><input class="group-checkable" type="checkbox"/></th>
+            {% endif %}
+            <th class="{% if not column.isSortable %}no-sort {% endif %}{{ column.getAttribute('class') }}" {% if column.hasAttribute('width') %}width="{{ column.getAttribute('width') }}"{% endif %}>{{ column.getName }}</th>
+        {% endfor %}
+    </tr>
+    <style>
+        .red {
+            background: red !important;
+        }
+
+        .green {
+            background: green !important;
+        }
+    </style>
+
+{#{% if grid.haveFilters() %}#}
+    {#<tr role="row" class="filter">#}
+        {#<td></td>#}
+
+        {#{% for filter in grid.getFilters() %}#}
+            {#<td>{{ filter }}</td>#}
+        {#{% endfor %}#}
+        {#{% if grid.getRowActions()|length %}#}
+            {#<td class="text-center sorting_disabled">#}
+                {#<button class="btn btn-sm red filter-cancel"><i class="fa fa-filter"></i> {{ _('Atstatyti') }}</button>#}
+            {#</td>#}
+        {#{% endif %}#}
+    {#</tr>#}
+{#{% endif %}#}
+</thead>

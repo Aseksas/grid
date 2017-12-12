@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+            {{ grid|raw }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+    {% stylesheets '@bootstrap_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"
+
+    {% stylesheets '@AseksasGridBundle/Resources/public/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    {% javascripts '@AseksasGridBundle/Resources/public/js/*' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        window.jQuery = window.$ = jQuery;
+
+        window.aseksasGridMessageListener = function(type, message){
+            alert(message + ' - ' + type);
+        };
+
+        $(document).ready(function() {
+            AjaxGrid.init({"name": "post"});
+        });
+    </script>
+{% endblock %}

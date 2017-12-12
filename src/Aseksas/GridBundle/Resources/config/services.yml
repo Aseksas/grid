@@ -1,0 +1,4 @@
+services:
+    aseksas_grid:
+        class: Aseksas\GridBundle\Service\GridService
+        arguments: ["@service_container"]
